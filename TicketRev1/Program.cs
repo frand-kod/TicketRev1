@@ -19,7 +19,7 @@ namespace TicketRev1
             while (true)
             {
                 Console.Clear(); // Bersihkan layar sebelum menampilkan menu
-                Console.WriteLine("--- ++ Aplikasi Register Tiket Pesawat++ ---");
+                Console.WriteLine("----- ++  Aplikasi Tiket Pesawat  ++ -----");
                 Console.WriteLine("===========================================");
 
                 //print harga terkini
@@ -29,13 +29,14 @@ namespace TicketRev1
                 TiketEkonomi Tiket2 = new TiketEkonomi(null,false);
                 Tiket2.PrintPrice();
 
-                Console.WriteLine("===========================================");
+                Console.WriteLine("-------------------------------------------");
 
                 Console.WriteLine("Pilih Ingin Membuat Jenis Tiket Apa : ");
                 Console.WriteLine("1. Bisnis \n2. Ekonomi \n3. Lihat Rincian Tiket \n4. Keluar");
+                Console.WriteLine("\n-------------------------------------------");
 
                 Console.Write("Pilihan Anda (1 .. 4) : ");
-                //validasi hanya inputan 1 sd 5 yang diizinkan
+                //validasi hanya inputan 1 sd 4 yang diizinkan
                 bool validInput = int.TryParse(Console.ReadLine(), out int pil);
 
                 if (!validInput || pil < 1 || pil > 4)
@@ -57,11 +58,8 @@ namespace TicketRev1
                             // Masukkan data ke constructor TiketBisnis
                             TiketBisnis TiketBisnis = new TiketBisnis(ValName);
 
-
                             // Creating data animation
                             Utils.PrintDots(5, "create");
-
-
 
                             // Masukkan ke list object bertipe 'TiketBisnis'
                             TicBisnis.Add(TiketBisnis);
@@ -110,6 +108,9 @@ namespace TicketRev1
                                     tiket.PrintInfo();
                                 }
                             }
+
+                            Console.WriteLine("\n------- +++++ -------\n");
+
                             if (TicEkonomi.Count > 0)
                             {
                                 Console.WriteLine(" === Tiket Ekonomi === ");
@@ -138,7 +139,6 @@ namespace TicketRev1
                     
                     }
                 }
-
             }
         }
     }

@@ -25,7 +25,7 @@ namespace TicketRev1
         //deklarasi fungsu yang dapat di ovverider
         public virtual void PrintInfo()
         {
-            Console.WriteLine("============================");
+            Console.WriteLine("\n");
             Console.WriteLine("-------- Data Tiket --------");
             Console.WriteLine($"\nName\t: {Name}");
             Console.WriteLine("----------------------------");
