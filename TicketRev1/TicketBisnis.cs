@@ -14,9 +14,10 @@ namespace TicketRev1
         private readonly string IdBisnis;
 
 
-        public TiketBisnis(string name) : base(name)
+        public TiketBisnis(string name, string alamat) : base(name, alamat)
         {
             IdBisnis = "BIS-" + Id;
+            this.Alamat = alamat;
             base.Price = priceBis; //set price di class parent dengan price di class TiketBisnis
 
         }

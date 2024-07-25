@@ -15,11 +15,12 @@ namespace TicketRev1
         private readonly string IdEko;
 
 
-        public TiketEkonomi(string name , bool discount) : base(name)
+        public TiketEkonomi(string name, string alamat , bool discount) : base(name,alamat)
         {
             IdEko = "EKO-" + Id;
             base.Price = priceEko; //set price di class parent dengan price di class TicketEko
             this.discount = discount;
+            this.Alamat = alamat;
 
         }
         //panggil method wajib dari abstract discount

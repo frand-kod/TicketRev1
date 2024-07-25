@@ -29,6 +29,10 @@ namespace TicketRev1
             {
                 Console.Write("");
             }
+            else if(typeMsg == "read")
+            {
+                Console.Write("Reading Data, Please Wait");
+            }
 
             for (int i = 0; i < CountOfDots; i++)
             {
