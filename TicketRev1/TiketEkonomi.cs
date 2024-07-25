@@ -15,7 +15,7 @@ namespace TicketRev1
         private readonly string IdEko;
 
 
-        public TiketEkonomi(string name, string alamat , bool discount) : base(name,alamat)
+        public TiketEkonomi(string name, string alamat, bool discount) : base(name, alamat)
         {
             IdEko = "EKO-" + Id;
             base.Price = priceEko; //set price di class parent dengan price di class TicketEko
@@ -41,15 +41,15 @@ namespace TicketRev1
 
             Console.WriteLine("Id\t: {0}", IdEko);
             Console.WriteLine("Jenis\t: {0}", jenisTiket);
-            
-                if (discount)
-                {
-                    Console.WriteLine("Harga\t: {0}", Discount());
-                }
-                else
-                {
-                    Console.WriteLine("Harga\t: {0}", priceEko);
-                }
+
+            if (discount)
+            {
+                Console.WriteLine("Harga\t: {0}", Discount());
+            }
+            else
+            {
+                Console.WriteLine("Harga\t: {0}", priceEko);
+            }
             Console.WriteLine("============================");
             Console.ResetColor();
 

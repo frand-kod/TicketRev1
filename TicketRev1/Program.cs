@@ -14,9 +14,9 @@ namespace TicketRev1
     {
         public static void Main()
         {
-            // Deklarasi collection untuk menampung tiket bisnis
+            // Deklarasi collection untuk menampung tiket 
             List<TiketBisnis> TicBisnis = new List<TiketBisnis>();
-            List<TiketEkonomi>TicEkonomi = new List<TiketEkonomi>();
+            List<TiketEkonomi> TicEkonomi = new List<TiketEkonomi>();
 
             // deklarasi database untuk penyimpanan data
             string connStr = "server=localhost;user=root;database=dbTicket;password=;";
@@ -31,9 +31,9 @@ namespace TicketRev1
 
                 //print harga terkini
 
-                TiketBisnis Tiket1 = new TiketBisnis(null,null);
+                TiketBisnis Tiket1 = new TiketBisnis(null, null);
                 Tiket1.PrintPrice();
-                TiketEkonomi Tiket2 = new TiketEkonomi(null,null,false);
+                TiketEkonomi Tiket2 = new TiketEkonomi(null, null, false);
                 Tiket2.PrintPrice();
 
                 Console.WriteLine("-------------------------------------------");
@@ -46,7 +46,7 @@ namespace TicketRev1
                 //validasi hanya inputan 1 sd 4 yang diizinkan
                 bool validInput = int.TryParse(Console.ReadLine(), out int pil);
 
-                if (!validInput || pil < 1 || pil > 6 && pil!= 99 )
+                if (!validInput || pil < 1 || pil > 6 && pil != 99)
                 {
                     Console.WriteLine("Masukkan inputan yang benar antara 1 hingga 6.");
                     Console.ReadKey();
@@ -130,8 +130,6 @@ namespace TicketRev1
                                 foreach (var tiket in TicEkonomi)
                                 {
                                     tiket.PrintInfo();
-
-                                   
                                 }
                             }
                             else
@@ -158,7 +156,7 @@ namespace TicketRev1
                                 }
                                 else
                                 {
-                                    
+
                                     Utils.PrintDots(5, "save");
                                     foreach (var tiket in TicEkonomi)
                                     {
@@ -190,6 +188,7 @@ namespace TicketRev1
                                         }
                                         else
                                         {
+
                                             Console.WriteLine("Tiket Ekonomi dengan ID {0} dan Nama {1} sudah ada.", "Eko-" + tiket.Id, tiket.Name);
                                         }
                                     }
@@ -243,12 +242,12 @@ namespace TicketRev1
 
 
                         case 5:
-                                Utils.PrintDots(5, "read");
-                                Console.WriteLine("List Data yg Tersimpan di database");
-                                conn.Open();//buka akses ke database
-                               
-                                try
-                                {
+                            Utils.PrintDots(5, "read");
+                            Console.WriteLine("List Data yg Tersimpan di database");
+                            conn.Open();//buka akses ke database
+
+                            try
+                            {
                                 //mulai pembacaan tiket bisnis
                                 //query untuk membaca data 
                                 string sqlReadBis = "select * from tiket_bisnis";
@@ -258,15 +257,15 @@ namespace TicketRev1
 
                                 //deklarasi method readerSql
                                 MySqlDataReader readerBis = cmdBis.ExecuteReader();
-                                
+
                                 Console.WriteLine("\nData Tiket Bisnis\n");
                                 int noBis = 1; // untuk nomer secara urut
-                                    while(readerBis.Read())
-                                    {
+                                while (readerBis.Read())
+                                {
                                     //tampilkan sebaris demi baris 
-                                    Console.WriteLine(noBis + ". Id tiket\t: {0},\tNama\t: {1},\tAlamat\t: {2},\tHarga\t: {3}", readerBis["id"], readerBis["nama"], readerBis["alamat"], readerBis ["harga"]);
+                                    Console.WriteLine(noBis + ". Id tiket\t: {0},\tNama\t: {1},\tAlamat\t: {2},\tHarga\t: {3}", readerBis["id"], readerBis["nama"], readerBis["alamat"], readerBis["harga"]);
                                     noBis++;
-                                    }
+                                }
                                 readerBis.Close();
 
 
@@ -277,81 +276,87 @@ namespace TicketRev1
 
                                 Console.WriteLine("\nData Tiket Ekonomi\n");
                                 int noEko = 1;
-                                    while (readerEko.Read())
-                                    {
-                                    Console.WriteLine(noEko + ". Id tiket\t: {0},\tNama\t: {1},\tAlamat\t: {2},\tHarga\t: {3}", readerEko ["id"], readerEko["nama"], readerEko["alamat"], readerEko["harga"]);
+                                while (readerEko.Read())
+                                {
+                                    Console.WriteLine(noEko + ". Id tiket\t: {0},\tNama\t: {1},\tAlamat\t: {2},\tHarga\t: {3}", readerEko["id"], readerEko["nama"], readerEko["alamat"], readerEko["harga"]);
                                     noEko++;
 
-                                    }
-                                readerEko.Close();
                                 }
-                                catch (Exception err){
+                                readerEko.Close();
+                            }
+                            catch (Exception err)
+                            {
                                 Console.WriteLine(err.ToString());
                                 Console.WriteLine("\ntekan sembarang tombol untuk kembali ke menu utama");
 
                                 Console.ReadKey();
 
-                                }
-                                finally
-                                    {
+                            }
+                            finally
+                            {
                                 conn.Close();
                                 Console.WriteLine("\ntekan sembarang tombol untuk kembali ke menu utama");
                                 Console.ReadKey();
-                                }
-                            break ;
+                            }
+                            break;
                         case 6:
                             Utils.PrintDots(5, "load");
                             Console.Write("Hapus Semua data pada database\n\n Apakah Anda Yakin? (y/n) : ");
-                            string pill= Console.ReadLine();
+                            string pill = Console.ReadLine();
 
-                            if ( pill == "y")
+                            if (pill == "y")
                             {
                                 try
                                 {
-                                conn.Open();
-                                //buat query penghapusan
-                                string sqlDelBis = "delete from tiket_bisnis";
-                                string sqlDelEko = "delete from tiket_ekonomi";
+                                    conn.Open();
+                                    //buat query penghapusan
+                                    string sqlDelBis = "delete from tiket_bisnis";
+                                    string sqlDelEko = "delete from tiket_ekonomi";
 
-                                //Panggil method mysql
-                                MySqlCommand cmdDelBis= new MySqlCommand( sqlDelBis, conn);
-                                MySqlCommand cmdDelEko = new MySqlCommand(sqlDelEko, conn);
+                                    //Panggil method mysql
+                                    MySqlCommand cmdDelBis = new MySqlCommand(sqlDelBis, conn);
+                                    MySqlCommand cmdDelEko = new MySqlCommand(sqlDelEko, conn);
 
-                                //jalankan perintah dan ambil jumlah baris yang terhapus (optionl)
-                                int countDelBis=cmdDelBis.ExecuteNonQuery();
-                                int countDelEko=cmdDelEko.ExecuteNonQuery();
+                                    //jalankan perintah dan ambil jumlah baris yang terhapus (optionl)
+                                    int countDelBis = cmdDelBis.ExecuteNonQuery();
+                                    int countDelEko = cmdDelEko.ExecuteNonQuery();
 
-                                //tampilkan informasi penghapusan
-                                    if(countDelBis > 0 || countDelEko > 0) {
-                                    
-                                    Console.WriteLine("Data Sukses terhapus !! ");
-                                    Console.WriteLine("Jumlah terhapus \n - Tiket Bisnis\t\t: {0}\n - Tiket Ekonomi\t: {1}", countDelBis, countDelEko);
+                                    //tampilkan informasi penghapusan
+                                    if (countDelBis > 0 || countDelEko > 0)
+                                    {
+
+                                        Console.WriteLine("Data Sukses terhapus !! ");
+                                        Console.WriteLine("Jumlah terhapus \n - Tiket Bisnis\t\t: {0}\n - Tiket Ekonomi\t: {1}", countDelBis, countDelEko);
                                     }
                                     else
                                     {
                                         Console.WriteLine("Tidak ada Data di database \n tekan semabaran tombol untuk kembali");
                                     }
-                                }catch (Exception err)
+                                }
+                                catch (Exception err)
                                 {
                                     Console.WriteLine(err.ToString());
                                     Console.ReadKey();
-                                }finally { 
+                                }
+                                finally
+                                {
                                     conn.Close();
                                     Console.ReadKey();
-                                   
+
                                 }
-                            }else if(pill == "n")
+                            }
+                            else if (pill == "n")
                             {
                                 Console.WriteLine("Okay.. data batal di hapus\ntekan sembarang tombol untuk kembali ke menu utama");
                                 Console.ReadKey();
-                                
+
                             }
                             else
                             {
                                 Console.WriteLine("Hanya masukkan y/n, sembarang tombol untuk ke menu utama");
                                 Console.ReadKey();
                             }
-                            break ;
+                            break;
                         case 99:
                             Console.WriteLine("Keluar...");
                             Console.ReadKey();
@@ -361,7 +366,7 @@ namespace TicketRev1
                             Console.WriteLine("Salah Input !");
                             Console.ReadKey();
                             break;
-                    
+
                     }
                 }
             }
